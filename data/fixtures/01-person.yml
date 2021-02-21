@@ -1,0 +1,7 @@
+Person:
+  User_admin:
+    code: "81092719101"
+    comment: "81092719101"
+    picture: './uploads/avatars/cutemale.png'
+    profile: '{"contacts":[],"positions":[],"legalrepresentant":true,"legalimportant":false}'
+    sfGuardUser: [User_admin]

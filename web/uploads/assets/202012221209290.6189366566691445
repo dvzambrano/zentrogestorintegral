@@ -1,0 +1,185 @@
+<div style="background-color: white; padding: 30px;"><div style="font-size:24px;">
+    
+        <style>
+            @page {
+              size: auto;
+              odd-header-name: html_MyHeader1;
+              odd-footer-name: html_MyFooter1;
+            }
+
+            @page chapter2 {
+                odd-header-name: html_MyHeader2;
+                odd-footer-name: html_MyFooter2;
+            }
+
+            @page noheader {
+                odd-header-name: _blank;
+                odd-footer-name: _blank;
+            }
+
+            div.chapter2 {
+                page-break-before: always;
+                page: chapter2;
+            }
+
+            div.noheader {
+                page-break-before: always;
+                page: noheader;
+            }
+            table.change_order_items { 
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 2em;
+                margin-bottom: 2em;
+            }
+
+            table.change_order_items>tbody { 
+                border: 1px solid black;
+            }
+
+            table.change_order_items>tbody>tr>th { 
+                border-bottom: 1px solid black;
+            }
+
+            table.change_order_items>tbody>tr>td { 
+                border-right: 1px solid black;
+                padding: 0.5em;
+            }
+            table.change_order_items>thead { 
+                border: 1px solid black;
+            }
+
+            table.change_order_items>thead>tr>th { 
+                border-bottom: 1px solid black;
+            }
+
+            table.change_order_items>thead>tr>td { 
+                border-right: 1px solid black;
+                padding: 0.5em;
+            }
+
+
+            td.change_order_total_col { 
+                padding-right: 4pt;
+                text-align: right;
+            }
+
+            td.change_order_unit_col { 
+                padding-left: 2pt;
+                text-align: left;
+            }
+
+            .even_row td {
+                /*  background-color: #F8EEE4;
+                  border-top: 3px solid #FFFFff;*/
+                background-color: #f6f6f6;
+                border-bottom: 0.9px solid #ddd;
+            }
+
+            .written_field { 
+                border-bottom: 0.1pt solid black;
+            }
+
+        </style>
+    
+    
+        <htmlpageheader name="MyHeader1">
+            <div style="text-align: right; <!--border-bottom: 1px solid #000000;--> font-weight: bold; font-size:10pt;"></div>
+        </htmlpageheader>
+
+        <table style="width: 100%; font-size:24px;">
+            <tbody><tr>
+                <td colspan="2" style="text-align:center; font-size:34px;"><b>FACTURA</b></td>
+            </tr>
+            <tr>
+                <td rowspan="4" style="width: 60%;"><img src="http://localhost/integral/uploads/assets/logos/20201220-081751-8A7BBB34CFE5732618DFBFD51A754241.png" alt="REYNERIO CRUZ  HECHAVARRIA" height="90px"></td>
+                <td style="width: 40%;"><b>Fecha</b>: 2020-12-20 08:35:14</td>
+            </tr>
+            <tr>
+                <td><b>Factura No.</b>: 202012-1</td>
+            </tr>
+            <tr>
+                <td><b>Vendedor</b>: Reynerio Cruz Hechavarria</td>
+            </tr>
+            <tr>
+                <td><b>Contrato</b>: 3/2019</td>
+            </tr>
+        </tbody></table>
+        <table style="width: 100%; border-top: 1px solid black; border-bottom: 1px solid black; font-size:24px;">
+            <tbody><tr>
+                <td><b>REYNERIO CRUZ  HECHAVARRIA</b></td>
+            </tr>
+            <tr>
+                <td>Maximo Gomez  No 191 % Aricochea y Cable</td>
+            </tr>
+            <tr>
+                <td>HOLGUIN</td>
+            </tr>
+                            <tr>
+                    <td><b>Teléfono Fijo</b>: 24425968</td>
+                </tr>
+                            <tr>
+                    <td><b>Teléfono Móvil</b>: +5354660392</td>
+                </tr>
+                            <tr>
+                    <td><b>Correo electrónico</b>: cobransa@nauta.cu</td>
+                </tr>
+                            <tr>
+                    <td><b>Apartado Postal</b>: 183</td>
+                </tr>
+                    </tbody></table>
+        <table class="change_order_items" style="width: 100%; font-size:24px;">
+            <tbody><tr><td colspan="7" style="font-size:28px;"><b>Facturar a:</b></td></tr>
+            <tr><td colspan="7">EMPRESA  DE PRODUCTOS LACTEO DE LAS TUNAS</td></tr>
+            </tbody><tbody>
+                <tr>
+                    <th>No.</th>
+                    <th>Descripción</th>
+                    <th>Cantidad</th>
+                    <th colspan="2">Precio</th>
+                    <th colspan="2">Total</th>
+                </tr>
+                                            </tbody>
+        </table>
+
+        <htmlpagefooter name="MyFooter1">
+            <table style="width: 100%;border: 1px solid black;text-align: right; font-size:24px;">
+                <tbody><tr>
+                    <td style="width: 80%;"><b>Total:</b> </td>
+                    <td style="width: 20%;text-align: right;">$0.00 CUC</td>
+                </tr>
+                                <tr>
+                    <td><b>Saldo a pagar:</b></td>
+                    <td>$0.00 CUC</td>
+                </tr>
+            </tbody></table>
+            <table class="sa_signature_box" style="font-size:24px;">
+                <tbody><tr>
+                    <td colspan="4" style="text-align: right"><b></b>.<br><br><br></td>
+                </tr>
+                <tr>    
+                    <td style="padding-left: 1em">Recibido por:</td><td class="written_field" style="padding-left: 2.5in; text-align: right;">X</td>
+                    <td style="padding-left: 1em">Elaborado por:</td><td class="written_field" style="padding-left: 2.5in; text-align: right;">X</td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="padding-top: 0em">&nbsp;</td>
+                    <td style="text-align: center; padding-top: 0em;">Donel Vazquez Zambrano</td>
+                </tr>
+                <tr>    
+                    <td style="padding-left: 1em">Fecha:</td>
+                </tr>
+            </tbody></table>
+            <br><br><br>
+            <div style="font-size:18px;">Este modelo ha sido generado por Donel Vazquez Zambrano utilizando el software 'Zentro® Gestor Integral'.</div>
+            <!--
+            <table width="100%" style="vertical-align: bottom; font-family: serif; font-size:8pt; color: #000000; font-weight: bold; font-style: italic;">
+                <tr>
+                    <td width="33%"><span style="font-weight: bold; font-style: italic;">{DATE j-m-Y}</span></td>
+                    <td width="33%" align="center" style="font-weight: bold; font-style: italic;">{PAGENO}/{nbpg}</td>
+                    <td width="33%" style="text-align: right; ">My document</td>
+                </tr>
+            </table>
+            -->
+        </htmlpagefooter>
+    
+</div></div>

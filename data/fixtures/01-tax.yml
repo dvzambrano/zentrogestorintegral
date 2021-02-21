@@ -1,0 +1,7 @@
+Tax:
+  Iva:
+    code: "<?php echo md5(strtoupper('IVA')) ?>"
+    name: 'IVA'
+  Costo:
+    code: "<?php echo md5(strtoupper('Costo de produccion')) ?>"
+    name: 'Costo de produccion'

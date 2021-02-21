@@ -1,0 +1,250 @@
+Person:
+  connection: doctrine
+  tableName: zab_person
+  columns:
+    code:
+      type: string(50)
+      notnull: false
+      unique: true
+    comment:
+      type: string()
+    picture:
+      type: string()
+    profile:
+      type: string()
+    baseline:
+      type: string()
+    rate:
+      type: decimal(18,2)
+    extrarate:
+      type: decimal(18,2)
+    positionid:
+      type: integer
+    sf_guard_user_id:
+      type: integer
+  relations:
+    sfGuardUser: { onDelete: CASCADE, local: sf_guard_user_id, foreign: id }
+    Position: { onDelete: CASCADE, local: positionid, foreign: id }
+    #Position: { class: Position, refClass: PersonPositionRelation, local: person_id, foreign: position_id, foreignAlias: Persons }
+    
+
+    
+Contract:
+  actAs:
+    Timestampable: ~
+  connection: doctrine
+  tableName: zgctr_contract
+  columns:  
+    duration:
+      type: decimal
+    manuallyprogrammed:
+      type: boolean
+      default: 0
+    percentage:
+      type: decimal
+    contracttypeid:
+      type: integer
+    contractstatusid:
+      type: integer 
+    areaid:
+      type: integer 
+    providerid:
+      type: integer
+    provideruserid:
+      type: integer   
+    clientid:
+      type: integer  
+    clientuserid:
+      type: integer   
+    paymentwayid:
+      type: integer  
+    paymentplaceid:
+      type: integer  
+    eventid:
+      type: integer  
+    created_by:
+      type: integer 
+    finished:
+      type: datetime 
+    paymentinstruments:
+      type: string()
+    path:
+      type: string()
+    profile:
+      type: string
+    entityid:
+      type: integer 
+  relations:    
+    Event: { onDelete: CASCADE, local: eventid, foreign: id, type: one, foreignAlias: Contract }
+    Contracttype: { onDelete: CASCADE, local: contracttypeid, foreign: id, foreignAlias: Contracts }
+    Contractstatus: { onDelete: SET NULL, local: contractstatusid, foreign: id, foreignAlias: Contracts }
+    Costcenter: { onDelete: SET NULL, local: areaid, foreign: id, foreignAlias: Contracts }
+    Creator: { class: Person, onDelete: CASCADE, local: created_by, foreign: id, foreignAlias: ContractsIhaveCreated }
+    Provider: { class: Entity, onDelete: CASCADE, local: providerid, foreign: id, foreignAlias: ContractsImProvider }
+    ProviderUser: { class: sfGuardUser, onDelete: CASCADE, local: provideruserid, foreign: id, foreignAlias: ContractsSignedAsProvider }
+    Client: { class: Entity, onDelete: CASCADE, local: clientid, foreign: id, foreignAlias: ContractsImClient }
+    ClientUser: { class: sfGuardUser, onDelete: CASCADE, local: clientuserid, foreign: id, foreignAlias: ContractsSignedAsClient }
+
+Element:
+  connection: doctrine
+  tableName: zmc_element
+  columns:
+    comment:
+      type: string()
+      notnull: false
+    name:
+      type: string(130)
+      notnull: true
+    code:
+      type: string(50)
+      notnull: true
+      unique: true
+    umid:
+      type: integer
+    entityid:
+      type: integer 
+  relations:
+    Um: { onDelete: CASCADE, local: umid, foreign: id, foreignAlias: Elements }
+    Product: { onDelete: CASCADE, local: id, foreign: elementid }
+    Equivalences: { class: Element, refClass: ElementElementRelation, local: from_id, foreign: to_id, type: many }
+
+Product:
+  connection: doctrine
+  tableName: zginv_product
+  columns:
+    amount:
+      type: decimal()
+      notnull: true
+    currencyid:
+      type: integer
+    elementid:
+      type: integer
+  relations:
+    Currency: { onDelete: SET NULL, local: currencyid, foreign: id, foreignAlias: Products }
+    Element: { onDelete: CASCADE, local: elementid, foreign: id }
+
+Tax:
+  connection: doctrine
+  tableName: zgfact_tax
+  columns:
+    code:
+      type: string(50)
+      notnull: true
+      unique: true
+    name:
+      type: string(130)
+      notnull: true
+    comment:
+      type: string()
+      notnull: false
+    entityid:
+      type: integer
+      notnull: false
+      
+ProductTaxRelation:
+  connection: doctrine
+  tableName: zginv_producttaxrelation
+  columns:
+    productid:
+      type: integer
+      primary: true
+    taxid:
+      type: integer
+      primary: true
+    amount:
+      type: decimal()
+      notnull: true
+    fixed:
+      type: boolean()
+    currencyid:
+      type: integer
+  relations:
+    Product:
+      class: Product
+      local: productid
+      onDelete: CASCADE
+    Tax:
+      class: Tax
+      local: taxid
+      onDelete: CASCADE
+    Currency:
+      class: Currency
+      local: currencyid
+      onDelete: CASCADE
+      
+ContractProductRelation:
+  connection: doctrine
+  tableName: zgfact_contractproductrelation
+  columns:
+    productid:
+      type: integer
+      primary: true
+    contractid:
+      type: integer
+      primary: true
+  relations:
+    Product:
+      class: Product
+      local: productid
+      onDelete: CASCADE
+    Contract:
+      class: Contract
+      local: contractid
+      onDelete: CASCADE
+
+Invoice:
+  connection: doctrine
+  tableName: zgfact_invoice
+  columns:
+    products:
+      type: string()
+    contractid:
+      type: integer
+    comprobantid:
+      type: integer
+  relations:
+    Contract: { onDelete: CASCADE, local: contractid, foreign: id, foreignAlias: Invoices }
+    Comprobant: { onDelete: CASCADE, local: comprobantid, foreign: id }
+
+InvoiceItem:
+  connection: doctrine
+  tableName: zgfact_invoiceitem
+  columns:
+    invoiceid:
+      type: integer
+    transactionid:
+      type: integer
+  relations:
+    Invoice: { onDelete: CASCADE, local: invoiceid, foreign: id, foreignAlias: InvoiceItems }
+    Transaction: { onDelete: CASCADE, local: transactionid, foreign: id }
+      
+InvoiceTaxRelation:
+  connection: doctrine
+  tableName: zgfact_invoicetaxrelation
+  columns:
+    invoiceid:
+      type: integer
+      primary: true
+    taxid:
+      type: integer
+      primary: true
+    amount:
+      type: decimal()
+      notnull: true
+    fixed:
+      type: boolean()
+    currencyid:
+      type: integer
+  relations:
+    Invoice:
+      class: Invoice
+      local: invoiceid
+      onDelete: CASCADE
+    Tax:
+      class: Tax
+      local: taxid
+      onDelete: CASCADE
+    Currency:
+      class: Currency
+      local: currencyid
+      onDelete: CASCADE

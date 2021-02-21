@@ -1,0 +1,4 @@
+Um:
+  Unidad:
+    code: "<?php echo md5(strtoupper('Unidad')) ?>"
+    name: 'Unidad'

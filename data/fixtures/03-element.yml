@@ -1,0 +1,47 @@
+Element:
+  Hojas:
+    code: "<?php echo md5(strtoupper('Paquete de Hojas')) ?>"
+    name: 'Paquete de Hojas'
+    Um: [Unidad]
+    entityid: 44
+  HojasBond:
+    code: "<?php echo md5(strtoupper('Hojas Timbradas de Papel Bond')) ?>"
+    name: 'Hojas Timbradas de Papel Bond'
+    comment: 'Este es un producto de prueba'
+    Um: [Unidad]
+    entityid: 44
+  ImresionEncuadernado:
+    code: "<?php echo md5(strtoupper('Impresion y encuedernado de documento')) ?>"
+    name: 'Impresion y encuedernado de documento'
+    comment: 'Este es un producto de prueba'
+    Um: [Unidad]
+    entityid: 44
+
+Product:
+  HojasBond:
+    amount: 7
+    Element: [HojasBond]
+    Currency: [CUP]
+  ImresionEncuadernado:
+    amount: 70
+    Element: [ImresionEncuadernado]
+    Currency: [CUC]
+      
+ProductTaxRelation:
+  HojasBond:
+    amount: 1
+    fixed: true
+    Tax: [Iva]
+    Product: [HojasBond]
+    Currency: [CUC]
+  ImresionEncuadernadoIvaNoFixed:
+    amount: 2
+    fixed: false
+    Tax: [Iva]
+    Product: [ImresionEncuadernado]
+  ImresionEncuadernadoCostoFixed:
+    amount: 1
+    fixed: true
+    Tax: [Costo]
+    Product: [ImresionEncuadernado]
+    Currency: [CUP]

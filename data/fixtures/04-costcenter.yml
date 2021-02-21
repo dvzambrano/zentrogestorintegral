@@ -1,0 +1,29 @@
+Costcenter:
+  C1:
+    code: "<?php echo md5(strtoupper('Cobransa')) ?>"
+    name: 'Cobransa'
+    path: '/NULL/1'
+    entityid: 44
+  C11:
+    code: "<?php echo md5(strtoupper('ALMACÉN')) ?>"
+    name: 'ALMACÉN'
+    Costcenter: [C1]
+    path: '/NULL/1/2'
+    entityid: 44
+  C12:
+    code: "<?php echo md5(strtoupper('Cafetería1')) ?>"
+    name: 'Plasticado'
+    Costcenter: [C1]
+    path: '/NULL/1/3'
+    entityid: 44
+  C14:
+    code: "<?php echo md5(strtoupper('Mecanografia1')) ?>"
+    name: 'Mecanografia'
+    Costcenter: [C1]
+    path: '/NULL/1/4'
+    entityid: 44
+
+CostcenterElementRelation:
+  C14-Hojas:
+    Costcenter: [C14]
+    Element: [Hojas]
